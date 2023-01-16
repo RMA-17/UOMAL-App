@@ -17,7 +17,7 @@ class HomeVIewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<HomeUiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private fun getPopularAnimeList() {
+    fun getPopularAnimeList() {
         viewModelScope.launch {
             _eventFlow.emit(HomeUiEvent.Loading)
             try {

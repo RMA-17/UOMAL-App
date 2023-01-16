@@ -35,7 +35,7 @@ fun AnimeCardItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .height(400.dp),
+            .height(436.dp),
         onClick = { onClicked() }
     ) {
         Box(
