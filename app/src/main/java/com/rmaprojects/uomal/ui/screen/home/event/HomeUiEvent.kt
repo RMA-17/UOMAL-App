@@ -1,6 +1,6 @@
 package com.rmaprojects.uomal.ui.screen.home.event
 
-import com.rmaprojects.uomal.data.remote.model.AnimeListResponse
+import com.rmaprojects.uomal.data.remote.model.animelist.AnimeListResponse
 
 sealed class HomeUiEvent {
     object Loading: HomeUiEvent()

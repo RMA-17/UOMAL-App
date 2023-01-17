@@ -1,7 +1,7 @@
 package com.rmaprojects.uomal.data.remote.service
 
-import com.rmaprojects.uomal.data.remote.model.AnimeListResponse
-import com.rmaprojects.uomal.data.remote.model.Data
+import com.rmaprojects.uomal.data.remote.model.anime.AnimeDetailResponse
+import com.rmaprojects.uomal.data.remote.model.animelist.AnimeListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -21,5 +21,5 @@ interface ApiService {
     @GET("anime/{animeId}")
     suspend fun getAnimeDetail(
         @Path("animeId") id: Int
-    ): Data
+    ): AnimeDetailResponse?
 }

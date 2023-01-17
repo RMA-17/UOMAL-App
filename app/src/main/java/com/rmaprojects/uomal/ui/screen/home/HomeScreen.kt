@@ -4,19 +4,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.rmaprojects.uomal.data.remote.model.Prop
 import com.rmaprojects.uomal.ui.components.AnimeCardItem
 import com.rmaprojects.uomal.ui.screen.home.event.HomeUiEvent
-import com.rmaprojects.uomal.utils.Converter
+import com.rmaprojects.uomal.utils.getAnimeAiringDate
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,6 +24,10 @@ fun HomeScreen(
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect(key1 = true) {
+        vIewModel.getPopularAnimeList()
+    }
 
     Scaffold(
         modifier = Modifier,
@@ -91,18 +91,4 @@ fun HomeScreen(
             }
         }
     }
-}
-
-private fun getAnimeAiringDate(prop: Prop) : String {
-    val animeFrom = Converter.dateConverter(
-        prop.from.day,
-        prop.from.month,
-        prop.from.year
-    )
-    val animeTo = Converter.dateConverter(
-        prop.to.day,
-        prop.to.month,
-        prop.to.year
-    )
-    return "$animeFrom to $animeTo"
 }

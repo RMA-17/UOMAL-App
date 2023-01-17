@@ -28,8 +28,4 @@ class HomeVIewModel @Inject constructor(
             }
         }
     }
-
-    init {
-        getPopularAnimeList()
-    }
 }

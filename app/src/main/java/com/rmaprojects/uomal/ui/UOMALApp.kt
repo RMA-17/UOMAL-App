@@ -1,12 +1,13 @@
 package com.rmaprojects.uomal.ui
 
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.rmaprojects.uomal.navigation.Detail
 import com.rmaprojects.uomal.navigation.Home
 import com.rmaprojects.uomal.ui.screen.detail.DetailScreen
@@ -22,13 +23,26 @@ fun UOMALApp(
     ) {
         composable(Home.route) {
             HomeScreen(
-                goToDetail = {
-                    navController.navigate(Detail.route)
+                goToDetail = { animeId ->
+                    navController.navigate(Detail.createRoute(animeId)) {
+                        launchSingleTop = true
+
+                        restoreState = true
+                    }
                 }
             )
         }
-        composable(Detail.route) {
-            DetailScreen()
+        composable(
+            route = Detail.route,
+            arguments = listOf(
+                navArgument("animeId") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            DetailScreen(
+                navigateBack = { navController.navigateUp() }
+            )
         }
     }
 }
